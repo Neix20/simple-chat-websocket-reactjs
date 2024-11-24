@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
-import dotenv from 'dotenv';
 
-// DotEnv
-dotenv.config();
-
-const ws_url = process.env.WS_URL;
+const ws_url = "20.255.188.197/ws-backend";
 
 const URL = `ws://${ws_url}`;
 

@@ -1,11 +1,6 @@
 const WebSocket = require('ws');
 
-const dotenv = require('dotenv');
-
-// Load Dotenv Config
-dotenv.config();
-
-const ws_port = process.env.WS_PORT || "8080";
+const ws_port = "8080";
 
 const wss = new WebSocket.Server({ port: ws_port });
 
