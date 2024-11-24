@@ -1,0 +1,29 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-ws-ingress
+  namespace: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /sample-frontend(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: ws-frontend-svc-cip
+            port:
+              number: 80
+      - path: /()(ws-backend.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: ws-backend-svc-cip
+            port:
+              number: 8080

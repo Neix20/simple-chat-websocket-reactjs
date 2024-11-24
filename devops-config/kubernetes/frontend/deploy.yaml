@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  ws-frontend
+  namespace: ingress-nginx
+  labels:
+    app:  ws-frontend
+spec:
+  selector:
+    matchLabels:
+      app: ws-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  ws-frontend
+    spec:
+      containers:
+      - name:  ws-frontend
+        image:  txe1/ws-frontend:latest
+        ports:
+        - containerPort:  80
+          name:  ws-frontend
+      restartPolicy: Always

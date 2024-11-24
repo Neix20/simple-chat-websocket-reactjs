@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  ws-backend
+  namespace: ingress-nginx
+  labels:
+    app:  ws-backend
+spec:
+  selector:
+    matchLabels:
+      app: ws-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  ws-backend
+    spec:
+      containers:
+      - name:  ws-backend
+        image:  txe1/ws-backend:latest
+        ports:
+        - containerPort:  80
+          name:  ws-backend
+      restartPolicy: Always
